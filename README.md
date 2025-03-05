@@ -1,9 +1,11 @@
 # RadFixes
 
-Fixes for pet peeves of mine shared with you.
+Fixes for various bugs in the game.
 
 ## Fixes
 
+* Shop keepers and others in Gold Rock City, Sage Hills, Happy Bay, Eastwind, and Chronos not following the sundown schedule
+* Not being able to buy anything in the Sage Hills inn at night
 * UI sounds playing when you are in another application
 * Sound continuing while in settings menu
 * Fishing rod reel rotating the opposite way

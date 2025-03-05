@@ -2,6 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using System.Reflection;
+using UnityEngine.SceneManagement;
 
 namespace RadFixes
 {
@@ -10,7 +11,7 @@ namespace RadFixes
     {
         public const string PLUGIN_GUID = "com.raddude82.radfixes";
         public const string PLUGIN_NAME = "RadFixes";
-        public const string PLUGIN_VERSION = "1.0.1";
+        public const string PLUGIN_VERSION = "1.1.0";
 
         internal static Plugin instance;
         internal static ManualLogSource logger;
@@ -21,6 +22,21 @@ namespace RadFixes
             logger = Logger;
 
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PLUGIN_GUID);
+            SceneManager.sceneLoaded += SceneLoaded;
+        }
+
+        private static void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            if (scene.name == "island 1 A Gold Rock")
+                SceneFixes.GoldRockCity();
+            if (scene.name == "island 13 E (Sage Hills)")
+                SceneFixes.SageHills();
+            if (scene.name == "island 18 M (Oasis)")
+                SceneFixes.HappyBay();
+            if (scene.name == "island 19 M (Eastwind)")
+                SceneFixes.Eastwind();
+            if (scene.name == "island 25 (chronos)")
+                SceneFixes.Chronos();
         }
     }
 }
