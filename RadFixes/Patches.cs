@@ -26,7 +26,7 @@ namespace RadFixes
 
         [HarmonyPatch(typeof(StartMenu))]
         private class StartMenuPatches
-        {
+        { 
             [HarmonyPostfix]
             [HarmonyPatch("Awake")]
             public static void DestroyDeco(GameObject ___settingsUI)
@@ -47,6 +47,23 @@ namespace RadFixes
             public static void UnPauseSound()
             {
                 AudioListener.pause = false;
+            }
+
+            [HarmonyPrefix]
+            [HarmonyPatch("ButtonClick", typeof(StartMenuButtonType))]
+            public static void ContinueLoadSlotMenuPre(StartMenuButtonType button, ref int __state)
+            {
+                __state = SaveSlots.activeSlotsCount;
+                if (button == StartMenuButtonType.Continue)
+                    SaveSlots.activeSlotsCount += 1;
+            }
+
+            [HarmonyPostfix]
+            [HarmonyPatch("ButtonClick", typeof(StartMenuButtonType))]
+            public static void ContinueLoadSlotMenuPost(StartMenuButtonType button, int __state)
+            {
+                if (button == StartMenuButtonType.Continue)
+                    SaveSlots.activeSlotsCount = __state;
             }
         }
 

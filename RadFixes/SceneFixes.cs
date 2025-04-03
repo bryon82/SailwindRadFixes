@@ -52,7 +52,7 @@ namespace RadFixes
             islandScenery.gameObject.AddComponent<IslandNPCSchedule>();
             islandScenery.gameObject.GetComponent<IslandNPCSchedule>().SetPrivateField("keeper", shopkeeper.gameObject.GetComponent<Shopkeeper>());
 
-            //// fix chair in ground... doesn't work
+            //// fix chair in ground... doesn't work. All the furniture appears to be some other item and all the same item
             //var chair = islandScenery?.GetComponentsInChildren<Transform>().FirstOrDefault(k => k.name == "furniture chair M");
 
             //if (chair != null)
@@ -106,6 +106,19 @@ namespace RadFixes
 
             shopArea.SetPrivateField("keeper", keeper);
             keeper.SetPrivateField("shop", shopArea);
-        }               
+        }
+        
+        internal static void FeyValley()
+        {
+            // cargo transport dude hire button broken
+            GameObject islandScenery = GameObject.Find("scenery");
+
+            var transportDude = islandScenery?.GetComponentsInChildren<Transform>().FirstOrDefault(k => k.name == "transport dude");
+            var cargoTransportDude = transportDude?.gameObject.GetComponent<CargoTransportDude>();
+
+            if (cargoTransportDude == null) return;
+
+            cargoTransportDude.carrierIndex = 35;
+        }
     }
 }

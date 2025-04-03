@@ -11,7 +11,7 @@ namespace RadFixes
     {
         public const string PLUGIN_GUID = "com.raddude82.radfixes";
         public const string PLUGIN_NAME = "RadFixes";
-        public const string PLUGIN_VERSION = "1.1.0";
+        public const string PLUGIN_VERSION = "1.1.1";
 
         internal static Plugin instance;
         internal static ManualLogSource logger;
@@ -37,6 +37,8 @@ namespace RadFixes
                 SceneFixes.Eastwind();
             if (scene.name == "island 25 (chronos)")
                 SceneFixes.Chronos();
+            if (scene.name == "island 35 M (valley)")
+                SceneFixes.FeyValley();
         }
     }
 }

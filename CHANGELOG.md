@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.1] - 2025-04-03
+
+### Fixes
+
+- Not being able to hire the cargo carrier in Fey Valley
+- Not being able to continue a game when only having one save slot in use and it is not the first slot.
+
 ## [v1.1.0] - 2025-03-05
 
 ### Fixes
