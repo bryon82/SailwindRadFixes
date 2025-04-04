@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.2] - 2025-04-03
+
+### Fixes
+
+- Zooming away or through the settings menu while paused in boat camera mode and zooming in or out.
+
+### Added
+
+- Configurations for different ways to fix the camera mode settings menu zoom problem.
+- Configuration to enable/disable the fishing rod reel fix.
+
 ## [v1.1.1] - 2025-04-03
 
 ### Fixes

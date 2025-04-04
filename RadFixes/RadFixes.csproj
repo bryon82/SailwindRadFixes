@@ -44,6 +44,10 @@
       <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oculus.VR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\Oculus.VR.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\System.dll</HintPath>
     </Reference>
@@ -56,6 +60,10 @@
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>

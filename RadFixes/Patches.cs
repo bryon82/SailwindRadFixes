@@ -13,14 +13,16 @@ namespace RadFixes
             [HarmonyPatch("OnLoad")]
             public static void OnLoadSetReverseSpinner(ref float ___spinnerSpeed)
             {
-                ___spinnerSpeed = -40f;
+                if (Plugin.enableFishingReelFix.Value)
+                    ___spinnerSpeed = -40f;
             }
 
             [HarmonyPostfix]
             [HarmonyPatch("OnBuy")]
             public static void OnBuySetReverseSpinner(ref float ___spinnerSpeed)
             {
-                ___spinnerSpeed = -40f;
+                if (Plugin.enableFishingReelFix.Value)
+                    ___spinnerSpeed = -40f;
             }
         }
 
@@ -65,6 +67,36 @@ namespace RadFixes
                 if (button == StartMenuButtonType.Continue)
                     SaveSlots.activeSlotsCount = __state;
             }
+
+            [HarmonyPrefix]
+            [HarmonyPatch("EnableSettingsMenu")]
+            public static bool BoatCameraNoMenu(GameObject ___logo)
+            {
+                if (BoatCamera.on && !(bool)GameState.currentShipyard && Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
+                {
+                    ___logo.SetActive(false);
+                    return false;
+                }                    
+                return true;
+            }
+
+            [HarmonyPrefix]
+            [HarmonyPatch("LateUpdate")]
+            public static bool BoatCameraNoMenuSettingsToGame(StartMenu __instance)
+            {
+                if ((Input.GetKeyDown("escape") || Input.GetKeyDown("f10") || Input.GetKeyDown(KeyCode.JoystickButton6)) && 
+                    GameState.playing && 
+                    !GameState.currentlyLoading && 
+                    !GameState.currentShipyard && 
+                    BoatCamera.on && 
+                    GameState.wasInSettingsMenu && 
+                    Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
+                {                    
+                    __instance.InvokePrivateMethod("SettingsToGame");
+                    return false;
+                }
+                return true;
+            }
         }
 
         [HarmonyPatch(typeof(BackupSavesListUI))]
@@ -88,6 +120,34 @@ namespace RadFixes
                 if (!Application.isFocused)
                     return false;
                 return true;
+            }
+        }
+
+        [HarmonyPatch(typeof(BoatCamera))]
+        private class BoatCameraPatches
+        {
+            [HarmonyPrefix]
+            [HarmonyPatch("Update")]
+            public static bool DisableZoomInMenu(ref Transform ___centerEye, bool ___on)
+            {
+                if (GameState.wasInSettingsMenu && 
+                    !(bool)GameState.currentShipyard && 
+                    ___on &&
+                    Plugin.boatCameraMenuZoom.Value.Equals("DisableZoom"))
+                {
+                    return false;
+                }
+
+                if (GameState.wasInSettingsMenu && 
+                    !(bool)GameState.currentShipyard && 
+                    ___on && 
+                    GameInput.GetKeyDown((InputName)16) && 
+                    Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
+                {
+                    return false;
+                }
+                
+                return true;                
             }
         }
     }

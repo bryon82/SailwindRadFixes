@@ -12,10 +12,16 @@ Fixes for various bugs in the game.
 
 * UI sounds playing when you are in another application.
 * Sound continuing while in settings menu.
+* Zooming away or through the settings menu while paused in boat camera mode and zooming in or out.
 * Backup saves for save slot one not popping up when hovering over it until you hover over another save slot.
 * Not being able to continue a game when only having one save slot in use and it is not the first slot.
 * Fishing rod reel rotating the opposite way.
 * Tree somehow growing in autosave section of Settings menu.
+
+## Configurable
+
+* Disable zoom or disable the settings menu to fix the boat camera settings menu zoom problem. Default is disable zoom.
+* Enable/disable the fishing rod reel fix
 
 ### Requires
 
