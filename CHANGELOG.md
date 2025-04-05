@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.3] - 2025-04-04
+
+### Fixes
+
+- Being able to switch to boat camera from the settings menu.
+- UI text showing while looking through spyglass.
+
 ## [v1.1.2] - 2025-04-03
 
 ### Fixes
