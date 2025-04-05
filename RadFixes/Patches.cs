@@ -7,7 +7,7 @@ namespace RadFixes
     internal class Patches
     {
         [HarmonyPatch(typeof(ShipItemFishingRod))]
-        private class ShipItemFisingRodPatches
+        private class ShipItemFishingRodPatches
         {
             [HarmonyPostfix]
             [HarmonyPatch("OnLoad")]
@@ -28,7 +28,7 @@ namespace RadFixes
 
         [HarmonyPatch(typeof(StartMenu))]
         private class StartMenuPatches
-        { 
+        {
             [HarmonyPostfix]
             [HarmonyPatch("Awake")]
             public static void DestroyDeco(GameObject ___settingsUI)
@@ -76,7 +76,7 @@ namespace RadFixes
                 {
                     ___logo.SetActive(false);
                     return false;
-                }                    
+                }
                 return true;
             }
 
@@ -91,7 +91,7 @@ namespace RadFixes
                     BoatCamera.on && 
                     GameState.wasInSettingsMenu && 
                     Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
-                {                    
+                {
                     __instance.InvokePrivateMethod("SettingsToGame");
                     return false;
                 }
@@ -128,8 +128,19 @@ namespace RadFixes
         {
             [HarmonyPrefix]
             [HarmonyPatch("Update")]
-            public static bool DisableZoomInMenu(ref Transform ___centerEye, bool ___on)
+            public static bool BoatCameraSettingsMenu(bool ___on)
             {
+                // Settings menu and try to switch to boat camera
+                if (GameState.playing &&
+                    !GameState.currentlyLoading &&
+                    !GameState.currentShipyard &&
+                    GameState.wasInSettingsMenu &&
+                    !___on &&
+                    GameInput.GetKeyDown(InputName.CameraMode))
+                {
+                    return false;
+                }
+
                 if (GameState.wasInSettingsMenu && 
                     !(bool)GameState.currentShipyard && 
                     ___on &&
@@ -146,8 +157,47 @@ namespace RadFixes
                 {
                     return false;
                 }
-                
+
                 return true;                
+            }
+        }
+
+        [HarmonyPatch(typeof(GoPointer))]
+        private static class GoPointerPatches
+        {
+            [HarmonyPrefix]
+            [HarmonyPatch("DoRaycast")]
+            public static bool DisableRaycastSpyglass(GoPointer __instance)
+            {
+                if (GameState.playing && !GameState.currentlyLoading)
+                {
+                    var heldItem = __instance.GetHeldItem();
+                    if (heldItem != null &&
+                        heldItem.GetComponent<ShipItem>()?.name == "spyglass" &&
+                        heldItem.GetComponent<ShipItemSpyglass>().heldRotationOffset != -22f)
+                    {
+                        __instance.lookUI.gameObject.SetActive(false);
+                        return false;
+                    }
+                    __instance.lookUI.gameObject.SetActive(true);
+                }
+                return true;
+            }
+
+            [HarmonyPrefix]
+            [HarmonyPatch("LateUpdate")]
+            public static bool DisableAltActivatePlacing(GoPointer __instance, PickupableItem ___heldItem, GoPointerButton ___pointedAtButton)
+            {
+                if (GameState.playing && 
+                    !GameState.currentlyLoading &&
+                    ___heldItem != null &&
+                    ___heldItem.GetComponent<ShipItem>()?.name == "spyglass" &&
+                    (bool)___pointedAtButton &&
+                    ___pointedAtButton.allowPlacingItems && __instance.AltButtonDown())
+                {
+                    return false;                    
+                }
+                return true;
             }
         }
     }
