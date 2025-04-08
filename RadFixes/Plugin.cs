@@ -12,7 +12,7 @@ namespace RadFixes
     {
         public const string PLUGIN_GUID = "com.raddude82.radfixes";
         public const string PLUGIN_NAME = "RadFixes";
-        public const string PLUGIN_VERSION = "1.1.3";
+        public const string PLUGIN_VERSION = "1.1.4";
 
         internal static ConfigEntry<bool> enableFishingReelFix;
         internal static ConfigEntry<string> boatCameraMenuZoom;

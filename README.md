@@ -31,8 +31,6 @@ Fixes for various bugs in the game.
 
 ### Installation
 
-**Download from Github**  
-Inside the extracted RadFixes-\<version\> folder copy the RadFixes folder and paste it into the Sailwind/BepInEx/Plugins folder.
+If updating remove RadFixes folders and/or RadFixes.dll files from previous installations.
 
-**Manual Download from Thunderstore**  
-Extract the zip, remove the appended version number from the resulting folder, and copy that entire folder (not just the contents) into the Sailwind/BepInEx/Plugins folder. 
+Extract the downloaded zip. Inside the extracted RadFixes-\<version\> folder copy the RadFixes folder and paste it into the Sailwind/BepInEx/Plugins folder.
