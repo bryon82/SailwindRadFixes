@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 using System.Linq;
+using Crest;
 
 namespace RadFixes
 {
@@ -158,7 +159,7 @@ namespace RadFixes
                     return false;
                 }
 
-                return true;                
+                return true;
             }
         }
 
@@ -195,9 +196,31 @@ namespace RadFixes
                     (bool)___pointedAtButton &&
                     ___pointedAtButton.allowPlacingItems && __instance.AltButtonDown())
                 {
-                    return false;                    
+                    return false;
                 }
                 return true;
+            }
+        }
+
+        [HarmonyPatch(typeof(ShipItemChipLog))]
+        private class ShipItemChipLogPatches
+        {
+            [HarmonyPrefix]
+            [HarmonyPatch("OnBuy")]
+            public static bool ChipLogOnBuy(
+                ShipItemChipLog __instance,
+                ref Rigidbody ___bobberBody,
+                ConfigurableJoint ___bobberJoint,
+                ref Vector3 ___initialBobberPos,
+                ref SimpleFloatingObject ___bobberFloater)
+            {
+                ___bobberBody = ___bobberJoint.GetComponent<Rigidbody>();
+                ___bobberJoint.transform.parent = Refs.shiftingWorld;
+                ___initialBobberPos = ___bobberJoint.connectedAnchor;
+                ___bobberFloater = ___bobberBody.GetComponent<SimpleFloatingObject>();
+                _ = __instance.sold;
+
+                return false;
             }
         }
     }

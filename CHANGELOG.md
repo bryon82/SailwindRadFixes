@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.5] - 2025-04-14
+
+### Fixed
+- ChipLog not working correctly when bought.
+
 ## [v1.1.4] - 2025-04-08
 
 ### Fixed

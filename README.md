@@ -17,6 +17,7 @@ Fixes for various bugs in the game.
 * Backup saves for save slot one not popping up when hovering over it until you hover over another save slot.
 * Not being able to continue a game when only having one save slot in use and it is not the first slot.
 * UI text showing while looking through spyglass.
+* ChipLog not working correctly when bought.
 * Fishing rod reel rotating the opposite way.
 * Tree somehow growing in autosave section of Settings menu.
 
