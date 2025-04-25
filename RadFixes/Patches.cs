@@ -223,5 +223,20 @@ namespace RadFixes
                 return false;
             }
         }
+
+        [HarmonyPatch(typeof(CargoCarrier))]
+        private class CargoCarrierPatches
+        {
+            [HarmonyPrefix]
+            [HarmonyPatch("Awake")]
+            public static bool SunspireFixHelper(CargoCarrier __instance)
+            {
+                if (__instance.portIndex == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }

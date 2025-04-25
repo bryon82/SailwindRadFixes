@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.6] - 2025-04-25
+
+### Fixed
+- Not being able to hire the cargo carrier in Sunspire
+
 ## [v1.1.5] - 2025-04-14
 
 ### Fixed

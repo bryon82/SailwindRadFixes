@@ -12,7 +12,7 @@ namespace RadFixes
     {
         public const string PLUGIN_GUID = "com.raddude82.radfixes";
         public const string PLUGIN_NAME = "RadFixes";
-        public const string PLUGIN_VERSION = "1.1.5";
+        public const string PLUGIN_VERSION = "1.1.6";
 
         internal static ConfigEntry<bool> enableFishingReelFix;
         internal static ConfigEntry<string> boatCameraMenuZoom;
@@ -38,6 +38,8 @@ namespace RadFixes
                 SceneFixes.GoldRockCity();
             if (scene.name == "island 13 E (Sage Hills)")
                 SceneFixes.SageHills();
+            if (scene.name == "island 16 M (Sunspire)")
+                SceneFixes.Sunspire();
             if (scene.name == "island 18 M (Oasis)")
                 SceneFixes.HappyBay();
             if (scene.name == "island 19 M (Eastwind)")

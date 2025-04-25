@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RadFixes
@@ -122,6 +123,23 @@ namespace RadFixes
             if (cargoTransportDude == null) return;
 
             cargoTransportDude.carrierIndex = 35;
+        }
+
+        internal static void Sunspire()
+        {
+            // cargo transport dude hire button broken
+            if (CargoCarrier.carriers[16] == null)
+            {
+                var carriers = Refs.observerMirror.gameObject.GetComponentsInChildren<Transform>(true).FirstOrDefault(k => k.name == "cargo carriers");
+                var carrier = carriers.gameObject.AddComponent<CargoCarrier>();
+                carrier.portIndex = 16;
+                carrier.currency = Currency.aestrin;
+                carrier.transportPriceMult = 2;
+                carrier.storagePriceMult = 1;
+                carrier.cargo = new List<ShipItem>();
+                Sun.OnNewDay += carrier.RegisterDayPassed;
+                CargoCarrier.carriers[16] = carrier;
+            }
         }
     }
 }
