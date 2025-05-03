@@ -14,12 +14,12 @@ namespace RadFixes
         public const string PLUGIN_NAME = "RadFixes";
         public const string PLUGIN_VERSION = "1.1.7";
 
-        internal static ConfigEntry<bool> enableFishingReelFix;
-        internal static ConfigEntry<string> boatCameraMenuZoom;
-
-        internal static RF_Plugin Instance;
+        internal static RF_Plugin Instance { get; set; }
         internal static ManualLogSource logger;
 
+        internal static ConfigEntry<bool> enableFishingReelFix;
+        internal static ConfigEntry<string> boatCameraMenuZoom;
+                
         private void Awake()
         {
             if (Instance != null && Instance != this)
