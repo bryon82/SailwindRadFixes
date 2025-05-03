@@ -2,7 +2,7 @@
 
 namespace RadFixes
 {
-    public class IslandNPCSchedule : MonoBehaviour
+    public class RF_NPCSchedule : MonoBehaviour
     {
         [SerializeField]
         private Shopkeeper keeper;

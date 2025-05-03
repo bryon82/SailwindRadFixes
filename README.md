@@ -18,6 +18,8 @@ Fixes for various bugs in the game.
 * Not being able to continue a game when only having one save slot in use and it is not the first slot.
 * UI text showing while looking through spyglass.
 * ChipLog not working correctly when bought.
+* First page of trade menu not showing the page numbers correctly.
+* Last page of trade menu showing the same last item as the previous page.
 * Fishing rod reel rotating the opposite way.
 * Tree somehow growing in autosave section of Settings menu.
 
@@ -34,7 +36,7 @@ Fixes for various bugs in the game.
 
 If updating, remove RadFixes folders and/or RadFixes.dll files from previous installations.  
 
-Extract the downloaded zip. Inside the extracted RadFixes-\<version\> folder copy the RadFixes folder and paste it into the Sailwind/BepInEx/Plugins folder.
+Extract the downloaded zip. Inside the extracted RadFixes-\<version\> folder copy the RadFixes folder and paste it into the Sailwind/BepInEx/Plugins folder.  
 
 #### Consider supporting me 🤗
 

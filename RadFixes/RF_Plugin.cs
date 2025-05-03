@@ -8,21 +8,26 @@ using UnityEngine.SceneManagement;
 namespace RadFixes
 {
     [BepInPlugin(PLUGIN_GUID, PLUGIN_NAME, PLUGIN_VERSION)]
-    public class Plugin : BaseUnityPlugin
+    public class RF_Plugin : BaseUnityPlugin
     {
         public const string PLUGIN_GUID = "com.raddude82.radfixes";
         public const string PLUGIN_NAME = "RadFixes";
-        public const string PLUGIN_VERSION = "1.1.6";
+        public const string PLUGIN_VERSION = "1.1.7";
 
         internal static ConfigEntry<bool> enableFishingReelFix;
         internal static ConfigEntry<string> boatCameraMenuZoom;
 
-        internal static Plugin instance;
+        internal static RF_Plugin Instance;
         internal static ManualLogSource logger;
 
         private void Awake()
         {
-            instance = this;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
             logger = Logger;
 
             enableFishingReelFix = Config.Bind("Settings", "Enable reel fix", true, "If enabled will rotate the fishing rod reel in the direction it should.");

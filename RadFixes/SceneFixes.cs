@@ -46,8 +46,8 @@ namespace RadFixes
 
             if (shopkeeper == null) return;
 
-            islandScenery.gameObject.AddComponent<IslandNPCSchedule>();
-            islandScenery.gameObject.GetComponent<IslandNPCSchedule>().SetPrivateField("keeper", shopkeeper);
+            islandScenery.gameObject.AddComponent<RF_NPCSchedule>();
+            islandScenery.gameObject.GetComponent<RF_NPCSchedule>().SetPrivateField("keeper", shopkeeper);
 
             //// fix chair in ground... doesn't work. All the furniture appears to be some other item and all the same item
             //var chair = islandScenery?.GetComponentsInChildren<Transform>().FirstOrDefault(k => k.name == "furniture chair M");
@@ -73,7 +73,7 @@ namespace RadFixes
                 }
             }
 
-            var shop = islandScenery?.GetComponentsInChildren<ShopArea>().FirstOrDefault(k => k.name == "shop area (2)");            
+            var shop = islandScenery?.GetComponentsInChildren<ShopArea>().FirstOrDefault(k => k.name == "shop area (2)");
 
             if (shop == null || keeper == null) return;
 
@@ -82,19 +82,19 @@ namespace RadFixes
         }
 
         internal static void Chronos()
-        {            
+        {
             // shopkeeper stays out after shops close 
-            GameObject islandScenery = GameObject.Find("island 25 (chronos) scenery");            
+            GameObject islandScenery = GameObject.Find("island 25 (chronos) scenery");
 
             var shopAreas = islandScenery?.GetComponentsInChildren<ShopArea>().Where(k => k.name == "shop area");
             ShopArea shop3 = null;
             ShopArea shop4 = null;
             foreach (var shopArea in shopAreas)
-            {                
+            {
                 if (shopArea.itemsForSale.Count > 0 && shopArea.itemsForSale[0].name == "bun")
                     shop3 = shopArea;
                 if (shopArea.itemsForSale.Count > 0 && shopArea.itemsForSale[0].name == "trout")
-                    shop4 = shopArea;                
+                    shop4 = shopArea;
             }
 
             var shopkeeper3 = islandScenery?.GetComponentsInChildren<Shopkeeper>().FirstOrDefault(k => k.name == "shopkeeper (3)");
@@ -112,14 +112,14 @@ namespace RadFixes
                 shopkeeper3.SetPrivateField("shop", shop3);
             }
         }
-        
+
         internal static void FeyValley()
         {
             // cargo transport dude hire button broken
             GameObject islandScenery = GameObject.Find("scenery");
 
             var cargoTransportDude = islandScenery?.GetComponentsInChildren<CargoTransportDude>().FirstOrDefault(k => k.name == "transport dude");
-            
+
             if (cargoTransportDude == null) return;
 
             cargoTransportDude.carrierIndex = 35;

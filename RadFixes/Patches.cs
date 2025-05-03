@@ -14,7 +14,7 @@ namespace RadFixes
             [HarmonyPatch("OnLoad")]
             public static void OnLoadSetReverseSpinner(ref float ___spinnerSpeed)
             {
-                if (Plugin.enableFishingReelFix.Value)
+                if (RF_Plugin.enableFishingReelFix.Value)
                     ___spinnerSpeed = -40f;
             }
 
@@ -22,7 +22,7 @@ namespace RadFixes
             [HarmonyPatch("OnBuy")]
             public static void OnBuySetReverseSpinner(ref float ___spinnerSpeed)
             {
-                if (Plugin.enableFishingReelFix.Value)
+                if (RF_Plugin.enableFishingReelFix.Value)
                     ___spinnerSpeed = -40f;
             }
         }
@@ -73,7 +73,7 @@ namespace RadFixes
             [HarmonyPatch("EnableSettingsMenu")]
             public static bool BoatCameraNoMenu(GameObject ___logo)
             {
-                if (BoatCamera.on && !(bool)GameState.currentShipyard && Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
+                if (BoatCamera.on && !(bool)GameState.currentShipyard && RF_Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
                 {
                     ___logo.SetActive(false);
                     return false;
@@ -91,7 +91,7 @@ namespace RadFixes
                     !GameState.currentShipyard && 
                     BoatCamera.on && 
                     GameState.wasInSettingsMenu && 
-                    Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
+                    RF_Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
                 {
                     __instance.InvokePrivateMethod("SettingsToGame");
                     return false;
@@ -145,7 +145,7 @@ namespace RadFixes
                 if (GameState.wasInSettingsMenu && 
                     !(bool)GameState.currentShipyard && 
                     ___on &&
-                    Plugin.boatCameraMenuZoom.Value.Equals("DisableZoom"))
+                    RF_Plugin.boatCameraMenuZoom.Value.Equals("DisableZoom"))
                 {
                     return false;
                 }
@@ -154,7 +154,7 @@ namespace RadFixes
                     !(bool)GameState.currentShipyard && 
                     ___on && 
                     GameInput.GetKeyDown((InputName)16) && 
-                    Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
+                    RF_Plugin.boatCameraMenuZoom.Value.Equals("DisableMenu"))
                 {
                     return false;
                 }
@@ -236,6 +236,67 @@ namespace RadFixes
                     return false;
                 }
                 return true;
+            }
+        }
+
+        [HarmonyPatch(typeof(EconomyUI))]
+        private class EconomyUIPatches
+        {
+            [HarmonyPostfix]
+            [HarmonyPatch("OpenUI")]
+            public static void FirstPagePatch(EconomyUI __instance, EconomyUIButton[] ___goodsListButtons, ref TextMesh ___textPageNumber)
+            {
+                int num = Mathf.CeilToInt((float)__instance.goodCount / (float)___goodsListButtons.Length);
+                ___textPageNumber.text = "1 / " + num;
+            }
+
+            [HarmonyPrefix]
+            [HarmonyPatch("RefreshGoodsList")]
+            public static bool RefreshGoodsListPatch(EconomyUI __instance, EconomyUIButton[] ___goodsListButtons, int ___currentGoodsListPage, EconomyUIGoodsOrder ___goodsOrder, Material[] ___buttonMaterials, IslandMarket ___currentIsland)
+            {
+                int num = ___goodsListButtons.Length;
+                for (int i = 0; i < num; i++)
+                {
+                    int buttonIndex = num * ___currentGoodsListPage + i + 1;
+                    if (buttonIndex >= ___goodsOrder.goods.Length)
+                    {
+                        ___goodsListButtons[i].gameObject.SetActive(false);
+                        continue;
+                    }
+
+                    ShipItem goodAt = ___goodsOrder.GetGoodAt(buttonIndex);
+                    int goodIndex = ___goodsOrder.GetGoodIndex(buttonIndex);
+
+                    if ((bool)goodAt && goodIndex != 51)
+                    {
+                        ___goodsListButtons[i].SetButtonText(goodAt.name);
+                    }
+                    else
+                    {
+                        ___goodsListButtons[i].SetButtonText("---");
+                    }
+                    
+                    if (!goodAt)
+                    {
+                        ___goodsListButtons[i].SetButtonMaterial(___buttonMaterials[1]);
+                    }
+                    else if (__instance.currentSelectedGood == goodIndex)
+                    {
+                        ___goodsListButtons[i].SetButtonMaterial(___buttonMaterials[2]);
+                    }
+                    else if (___currentIsland.HasGood(goodIndex))
+                    {
+                        ___goodsListButtons[i].SetButtonMaterial(___buttonMaterials[0]);
+                    }
+                    else
+                    {
+                        ___goodsListButtons[i].SetButtonMaterial(___buttonMaterials[1]);
+                    }
+
+                    ___goodsListButtons[i].SetButtonIndex(goodIndex);
+                    ___goodsListButtons[i].gameObject.SetActive(true);
+                }
+                return false;
             }
         }
     }

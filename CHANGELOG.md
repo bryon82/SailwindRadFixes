@@ -2,10 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.7] - 2025-05-03
+
+### Fixed
+- First page of trade menu not showing the page numbers correctly and last page showing the same last item as the previous page.
+
 ## [v1.1.6] - 2025-04-25
 
 ### Fixed
-- Not being able to hire the cargo carrier in Sunspire
+- Not being able to hire the cargo carrier in Sunspire.
 
 ## [v1.1.5] - 2025-04-14
 
