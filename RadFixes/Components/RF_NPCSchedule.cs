@@ -5,27 +5,27 @@ namespace RadFixes
     public class RF_NPCSchedule : MonoBehaviour
     {
         [SerializeField]
-        private Shopkeeper keeper;
+        private Shopkeeper _keeper;
 
         private void Awake()
         {
-            keeper = null;
+            _keeper = null;
         }
 
         public void Update()
         {
-            if (!keeper) return;
+            if (!_keeper) return;
 
             if (Sun.sun.localTime >= 18f || Sun.sun.localTime < 7f)
             {
-                if (keeper.gameObject.activeInHierarchy)
+                if (_keeper.gameObject.activeInHierarchy)
                 {
-                    keeper.gameObject.SetActive(false);
+                    _keeper.gameObject.SetActive(false);
                 }
             }
-            else if (!keeper.gameObject.activeInHierarchy)
+            else if (!_keeper.gameObject.activeInHierarchy)
             {
-                keeper.gameObject.SetActive(true);
+                _keeper.gameObject.SetActive(true);
             }
         }
     }

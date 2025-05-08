@@ -10,6 +10,7 @@ Fixes for various bugs in the game.
 
 ## General Fixes
 
+* NullReferenceExceptions slowing down startup.
 * UI sounds playing when you are in another application.
 * Sound continuing while in settings menu.
 * Zooming away or through the settings menu while paused in boat camera mode and zooming in or out.
@@ -21,7 +22,7 @@ Fixes for various bugs in the game.
 * First page of trade menu not showing the page numbers correctly.
 * Last page of trade menu showing the same last item as the previous page.
 * Fishing rod reel rotating the opposite way.
-* Tree somehow growing in autosave section of Settings menu.
+* Tree in autosave section of Settings menu.
 
 ## Configurable
 

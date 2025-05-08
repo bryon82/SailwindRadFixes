@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.8] - 2025-05-07
+
+### Fixed
+- Several startup NullReferenceExceptions. Fixing these makes startup slightly faster.
+- NPC boats causing an NRE when they reached their destination.
+
 ## [v1.1.7] - 2025-05-03
 
 ### Fixed
