@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static RadFixes.RF_Plugin;
 
 namespace RadFixes
 {
@@ -22,6 +23,12 @@ namespace RadFixes
 
             if (shop == null || keeper == null) return;
 
+            if (shop.GetShopkeeper() == keeper && keeper.GetPrivateField<ShopArea>("shop") == shop)
+            {
+                LogWarning($"Gold Rock City shop fix not needed for {shopkeeperName} - {shopName}");
+                return;
+            }
+
             shop.SetPrivateField("keeper", keeper);
             keeper.SetPrivateField("shop", shop);
         }
@@ -33,7 +40,14 @@ namespace RadFixes
 
             var shop = islandScenery?.GetComponentsInChildren<ShopArea>().FirstOrDefault(k => k.name == "shop area (2)");
 
-            if (shop == null) return;
+            if (shop == null)
+                return;
+
+            if (shop.openAtNight)
+            {
+                LogWarning("Sage Hills shop fix not needed");
+                return;
+            }                
 
             shop.openAtNight = true;
         }
@@ -45,7 +59,8 @@ namespace RadFixes
 
             var shopkeeper = islandScenery?.GetComponentsInChildren<Shopkeeper>().FirstOrDefault(k => k.name == "shopkeeper");
 
-            if (shopkeeper == null) return;
+            if (shopkeeper == null)
+                return;
 
             var npcShedule = islandScenery.gameObject.AddComponent<RF_NPCSchedule>();
             npcShedule.SetPrivateField("_keeper", shopkeeper);
@@ -78,6 +93,12 @@ namespace RadFixes
 
             if (shop == null || keeper == null) return;
 
+            if (shop.GetShopkeeper() == keeper && keeper.GetPrivateField<ShopArea>("shop") == shop)
+            {
+                LogWarning($"Eastwind shop fix not needed");
+                return;
+            }
+
             shop.SetPrivateField("keeper", keeper);
             keeper.SetPrivateField("shop", shop);
         }
@@ -103,12 +124,20 @@ namespace RadFixes
 
             if (shop4 != null && shopkeeper4 != null)
             {
+                if (shop4.GetShopkeeper() == shopkeeper4 && shopkeeper4.GetPrivateField<ShopArea>("shop") == shop4)
+                {
+                    LogWarning($"Chronos shop fix not needed for {shopkeeper4.name} - {shop4.name}");                    
+                }
                 shop4.SetPrivateField("keeper", shopkeeper4);
                 shopkeeper4.SetPrivateField("shop", shop4);
             }
 
             if (shop3 != null && shopkeeper3 != null) 
             {
+                if (shop3.GetShopkeeper() == shopkeeper3 && shopkeeper3.GetPrivateField<ShopArea>("shop") == shop3)
+                {
+                    LogWarning($"Chronos shop fix not needed for {shopkeeper3.name} - {shop3.name}");                    
+                }
                 shop3.SetPrivateField("keeper", shopkeeper3);
                 shopkeeper3.SetPrivateField("shop", shop3);
             }
@@ -121,7 +150,14 @@ namespace RadFixes
 
             var cargoTransportDude = islandScenery?.GetComponentsInChildren<CargoTransportDude>().FirstOrDefault(k => k.name == "transport dude");
 
-            if (cargoTransportDude == null) return;
+            if (cargoTransportDude == null) 
+                return;
+
+            if (cargoTransportDude.carrierIndex == 35)
+            {
+                LogWarning("Fey Valley cargo carrier fix not needed");
+                return;
+            }
 
             cargoTransportDude.carrierIndex = 35;
         }
@@ -129,18 +165,21 @@ namespace RadFixes
         // cargo transport dude hire button broken
         internal static void Sunspire()
         {
-            if (CargoCarrier.carriers[16] == null)
+            if (CargoCarrier.carriers[16] != null)
             {
-                var carriers = Refs.observerMirror.gameObject.GetComponentsInChildren<Transform>(true).FirstOrDefault(k => k.name == "cargo carriers");
-                var carrier = carriers.gameObject.AddComponent<CargoCarrier>();
-                carrier.portIndex = 16;
-                carrier.currency = Currency.aestrin;
-                carrier.transportPriceMult = 2;
-                carrier.storagePriceMult = 1;
-                carrier.cargo = new List<ShipItem>();
-                Sun.OnNewDay += carrier.RegisterDayPassed;
-                CargoCarrier.carriers[16] = carrier;
+                LogWarning("Sunspire cargo carrier fix not needed");
+                return;
             }
+            
+            var carriers = Refs.observerMirror.gameObject.GetComponentsInChildren<Transform>(true).FirstOrDefault(k => k.name == "cargo carriers");
+            var carrier = carriers.gameObject.AddComponent<CargoCarrier>();
+            carrier.portIndex = 16;
+            carrier.currency = Currency.aestrin;
+            carrier.transportPriceMult = 2;
+            carrier.storagePriceMult = 1;
+            carrier.cargo = new List<ShipItem>();
+            Sun.OnNewDay += carrier.RegisterDayPassed;
+            CargoCarrier.carriers[16] = carrier;            
         }
 
         // needed for Sunspire fix

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.9] - 2025-05-12
+
+### Updated
+- Settings menu fix that was causing the game breaking bug after the game update, one of the "various minor UI improvements".
+- Scene fixes to detect if the fix is needed anymore.
+
 ## [v1.1.8] - 2025-05-07
 
 ### Fixed
