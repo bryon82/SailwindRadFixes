@@ -116,5 +116,22 @@ namespace RadFixes
                 return false;
             }
         }
+
+        [HarmonyPatch(typeof(PortDude), "OnTriggerEnter")]
+        private class PortDudePatches
+        {
+            // OnTriggerEnter NRE fix or index out of bounds fix
+            public static bool Prefix(Collider other)
+            {
+                if (other.CompareTag("Player") || !other.CompareTag("Good")) 
+                    return false;
+
+                var good = other.GetComponent<Good>();
+                if (good == null || good.GetMissionIndex() == -1)
+                    return false;
+                
+                return true;
+            }
+        }
     }
 }

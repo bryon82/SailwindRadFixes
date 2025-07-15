@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.10] - 2025-07-15
+
+### Fixed
+- Trade menu fix incorrectly showing page number 1 when reopening the trade menu after closing it on a different page.
+- NRE for when dropping a non mission good near a port dude.
+
+### Removed
+- Settings menu tree fix, Fey Valley and Sunspire cargo carrier fixes as they are no longer needed.
+
 ## [v1.1.9] - 2025-05-12
 
 ### Updated

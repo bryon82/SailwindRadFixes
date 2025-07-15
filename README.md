@@ -6,7 +6,6 @@ Fixes for various bugs in the game.
 
 * Shop keepers and other NPCs in Gold Rock City, Sage Hills, Happy Bay, Eastwind, and Chronos not following the sundown schedule.
 * Not being able to buy anything in the Sage Hills inn at night.
-* Not being able to hire cargo carrier in Fey Valley or Sunspire.
 
 ## General Fixes
 
@@ -22,7 +21,6 @@ Fixes for various bugs in the game.
 * First page of trade menu not showing the page numbers correctly.
 * Last page of trade menu showing the same last item as the previous page.
 * Fishing rod reel rotating the opposite way.
-* Tree in autosave section of Settings menu.
 
 ## Configurable
 

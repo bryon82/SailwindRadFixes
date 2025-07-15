@@ -1,6 +1,4 @@
-﻿using HarmonyLib;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using static RadFixes.RF_Plugin;
 
@@ -140,59 +138,6 @@ namespace RadFixes
                 }
                 shop3.SetPrivateField("keeper", shopkeeper3);
                 shopkeeper3.SetPrivateField("shop", shop3);
-            }
-        }
-
-        // cargo transport dude hire button broken
-        internal static void FeyValley()
-        {
-            var islandScenery = GameObject.Find("scenery");
-
-            var cargoTransportDude = islandScenery?.GetComponentsInChildren<CargoTransportDude>().FirstOrDefault(k => k.name == "transport dude");
-
-            if (cargoTransportDude == null) 
-                return;
-
-            if (cargoTransportDude.carrierIndex == 35)
-            {
-                LogWarning("Fey Valley cargo carrier fix not needed");
-                return;
-            }
-
-            cargoTransportDude.carrierIndex = 35;
-        }
-
-        // cargo transport dude hire button broken
-        internal static void Sunspire()
-        {
-            if (CargoCarrier.carriers[16] != null)
-            {
-                LogWarning("Sunspire cargo carrier fix not needed");
-                return;
-            }
-            
-            var carriers = Refs.observerMirror.gameObject.GetComponentsInChildren<Transform>(true).FirstOrDefault(k => k.name == "cargo carriers");
-            var carrier = carriers.gameObject.AddComponent<CargoCarrier>();
-            carrier.portIndex = 16;
-            carrier.currency = Currency.aestrin;
-            carrier.transportPriceMult = 2;
-            carrier.storagePriceMult = 1;
-            carrier.cargo = new List<ShipItem>();
-            Sun.OnNewDay += carrier.RegisterDayPassed;
-            CargoCarrier.carriers[16] = carrier;            
-        }
-
-        // needed for Sunspire fix
-        [HarmonyPatch(typeof(CargoCarrier), "Awake")]
-        private class CargoCarrierPatches
-        {
-            public static bool Prefix(CargoCarrier __instance)
-            {
-                if (__instance.portIndex == 0)
-                {
-                    return false;
-                }
-                return true;
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using System.Linq;
 using static RadFixes.RF_Plugin;
 
 namespace RadFixes
@@ -10,19 +9,6 @@ namespace RadFixes
         [HarmonyPatch(typeof(StartMenu))]
         private class StartMenuPatches
         {
-            [HarmonyPostfix]
-            [HarmonyPatch("Awake")]
-            public static void DestroyDeco(GameObject ___settingsUI)
-            {
-                var deco = ___settingsUI.GetComponentsInChildren<Transform>().FirstOrDefault(k => k.name == "deco (1)");
-                if (deco == null)
-                {
-                    LogWarning("Settings menu tree removal fix not needed");
-                    return;
-                }
-                Object.Destroy(deco.gameObject);
-            }
-
             [HarmonyPrefix]
             [HarmonyPatch("GameToSettings")]
             public static void PauseSound()

@@ -13,10 +13,18 @@ namespace RadFixes
             public static void Postfix(
                 EconomyUI __instance,
                 EconomyUIButton[] ___goodsListButtons,
-                ref TextMesh ___textPageNumber)
+                ref TextMesh ___textPageNumber,
+                int ___currentGoodsListPage)
             {
                 int num = Mathf.CeilToInt((float)__instance.goodCount / ___goodsListButtons.Length);
-                ___textPageNumber.text = "1 / " + num;
+
+                var currentPage = ___currentGoodsListPage;                
+                if (currentPage < 0)
+                    currentPage = 0;
+                if (currentPage > num - 1)
+                    currentPage = num - 1;
+                
+                ___textPageNumber.text = $"{currentPage + 1} / {num}";
             }
 
             // duplicate item on last page was from going over the bounds of the goods list

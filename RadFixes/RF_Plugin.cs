@@ -12,7 +12,7 @@ namespace RadFixes
     {
         public const string PLUGIN_GUID = "com.raddude82.radfixes";
         public const string PLUGIN_NAME = "RadFixes";
-        public const string PLUGIN_VERSION = "1.1.9";
+        public const string PLUGIN_VERSION = "1.1.10";
 
         internal static RF_Plugin Instance { get; private set; }
         private static ManualLogSource s_logger;
@@ -48,16 +48,12 @@ namespace RadFixes
                 SceneFixes.GoldRockCity();
             if (scene.name == "island 13 E (Sage Hills)")
                 SceneFixes.SageHills();
-            if (scene.name == "island 16 M (Sunspire)")
-                SceneFixes.Sunspire();
             if (scene.name == "island 18 M (Oasis)")
                 SceneFixes.HappyBay();
             if (scene.name == "island 19 M (Eastwind)")
                 SceneFixes.Eastwind();
             if (scene.name == "island 25 (chronos)")
                 SceneFixes.Chronos();
-            if (scene.name == "island 35 M (valley)")
-                SceneFixes.FeyValley();
         }
     }
 }
