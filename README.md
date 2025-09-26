@@ -4,7 +4,7 @@ Fixes for various bugs in the game.
 
 ## NPC Fixes
 
-* Shop keepers and other NPCs in Gold Rock City, Sage Hills, Happy Bay, Eastwind, and Chronos not following the sundown schedule.
+* Shop keepers and other NPCs in Gold Rock City, Sage Hills, Happy Bay, Eastwind, and Chronos not following the sunset schedule.
 * Not being able to buy anything in the Sage Hills inn at night.
 
 ## General Fixes

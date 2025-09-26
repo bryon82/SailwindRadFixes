@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.11] - 2025-09-26
+
+### Fixed
+- NPC boat stalling and spamming logs.
+
 ## [v1.1.10] - 2025-07-15
 
 ### Fixed

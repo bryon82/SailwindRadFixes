@@ -36,7 +36,7 @@ namespace RadFixes
         {
             // startup NRE fix
             [HarmonyPatch("Start")]
-            public static bool Prefix(NPCBoatController __instance, ref Rigidbody ___rigidbody)
+            public static bool Prefix(NPCBoatController __instance, ref Collider ___col, ref Rigidbody ___rigidbody)
             {
                 int waypointIndex;
                 if (__instance.currentTarget?.GetComponent<NPCBoatWaypoint>() == null)
@@ -44,6 +44,7 @@ namespace RadFixes
                 else
                     waypointIndex = __instance.currentTarget.GetComponent<NPCBoatWaypoint>().index;
 
+                ___col = __instance.GetComponent<Collider>();
                 ___rigidbody = __instance.GetComponent<Rigidbody>();
                 __instance.currentTargetIndex = waypointIndex;
                 __instance.currentDockIndex = -1;
