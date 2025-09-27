@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fixes\BoatDamageFixes.cs" />
     <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="Fixes\SettingsMenuFixes.cs" />
     <Compile Include="Fixes\ItemFixes.cs" />

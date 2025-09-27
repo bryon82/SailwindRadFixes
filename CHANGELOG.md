@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.2.0] - 2025-09-26
+
+### Added
+- IFrames during shipyard exit so no boat damage is taken.
+
 ## [v1.1.11] - 2025-09-26
 
 ### Fixed
