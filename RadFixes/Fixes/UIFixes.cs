@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RadFixes
 {
-    internal class TradeMenuFixes
+    internal class UIFixes
     {
         [HarmonyPatch(typeof(EconomyUI))]
         private class EconomyUIPatches
@@ -81,6 +81,20 @@ namespace RadFixes
                     ___goodsListButtons[i].gameObject.SetActive(true);
                 }
                 return false;
+            }
+        }
+
+        [HarmonyBefore("com.raddude82.radrefinements")]
+        [HarmonyPatch(typeof(GPButtonInventorySlot), "OnItemClick")]
+        private class GPButtonInventorySlotPatches
+        {
+            // Fix for shopkeeper ui trying to buy item from player remains when item is placed in inventory slot
+            public static void Prefix()
+            {
+                if (BuyItemUI.instance.menu.activeInHierarchy)
+                {
+                    BuyItemUI.instance.DeactivateUI();
+                }
             }
         }
     }

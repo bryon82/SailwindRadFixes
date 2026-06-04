@@ -1,13 +1,28 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static RadFixes.RF_Plugin;
 
 namespace RadFixes
 {
     internal class SceneFixes
     {
+        internal static void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            if (scene.name == "island 1 A Gold Rock")
+                GoldRockCity();
+            if (scene.name == "island 13 E (Sage Hills)")
+                SageHills();
+            if (scene.name == "island 18 M (Oasis)")
+                HappyBay();
+            if (scene.name == "island 19 M (Eastwind)")
+                Eastwind();
+            if (scene.name == "island 25 (chronos)")
+                Chronos();
+        }
+
         // 2 shop keepers stay out after shops close
-        internal static void GoldRockCity()
+        private static void GoldRockCity()
         {
             var islandScenery = GameObject.Find("island 1 A (gold rock) scenery");
             SetShopkeeper(islandScenery, "shop (3)", "shopkeeper (5)");
@@ -32,7 +47,7 @@ namespace RadFixes
         }
 
         // tavern shop keeper doesn't stay at night and cannot buy anything
-        internal static void SageHills()
+        private static void SageHills()
         {
             var islandScenery = GameObject.Find("island 13 E (sage hills) scenery");
 
@@ -51,7 +66,7 @@ namespace RadFixes
         }
 
         // random guy at the top of town stays out all night and there are no available shops to attach him to
-        internal static void HappyBay()
+        private static void HappyBay()
         {
             var islandScenery = GameObject.Find("island 18 M (Oasis) scenery");
 
@@ -71,7 +86,7 @@ namespace RadFixes
         }
 
         // tavern shopkeeper doesn't stay at night but a different shopkeeper does
-        internal static void Eastwind()
+        private static void Eastwind()
         {
             var islandScenery = GameObject.Find("island 19 M (Eastwind) scenery");
 
@@ -102,7 +117,7 @@ namespace RadFixes
         }
 
         // shopkeeper stays out after shops close 
-        internal static void Chronos()
+        private static void Chronos()
         {
             var islandScenery = GameObject.Find("island 25 (chronos) scenery");
 

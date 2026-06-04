@@ -84,7 +84,7 @@
     <Compile Include="Fixes\ItemFixes.cs" />
     <Compile Include="Fixes\NREFixes.cs" />
     <Compile Include="Fixes\ContinueMenuFixes.cs" />
-    <Compile Include="Fixes\TradeMenuFixes.cs" />
+    <Compile Include="Fixes\UIFixes.cs" />
     <Compile Include="RF_Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Fixes\SceneFixes.cs" />

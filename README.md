@@ -9,6 +9,7 @@ Fixes for various bugs in the game.
 
 ## General Fixes
 
+* Sell window remaining up after placing item in inventory.
 * NullReferenceExceptions slowing down startup.
 * UI sounds playing when you are in another application.
 * Sound continuing while in settings menu.

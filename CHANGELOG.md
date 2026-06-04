@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.2.1] - 2026-06-04
+
+### Updated
+- Changed the release process so hopefully some linux users will no longer have issues when unzipping the release file.
+
+### Fixed
+- Sell window remaining up after placing item in inventory.
+
 ## [v1.2.0] - 2025-09-26
 
 ### Added

@@ -14,9 +14,8 @@ namespace RadFixes
         {
             public static bool Prefix()
             {
-
                 if (inIFrames)
-                    LogDebug("Damage recieved in IFrames");
+                    LogDebug("In IFrames, no damage received");
 
                 return !inIFrames;
             }
