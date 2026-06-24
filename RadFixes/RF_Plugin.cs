@@ -10,9 +10,9 @@ namespace RadFixes
     [BepInPlugin(PLUGIN_GUID, PLUGIN_NAME, PLUGIN_VERSION)]
     public class RF_Plugin : BaseUnityPlugin
     {
-        public const string PLUGIN_GUID = "com.raddude82.radfixes";
+        public const string PLUGIN_GUID = "com.raddude.radfixes";
         public const string PLUGIN_NAME = "RadFixes";
-        public const string PLUGIN_VERSION = "1.2.1";
+        public const string PLUGIN_VERSION = "1.3.0";
 
         internal static RF_Plugin Instance { get; private set; }
         private static ManualLogSource _logger;
@@ -20,10 +20,7 @@ namespace RadFixes
         internal static void LogDebug(string message) => _logger.LogDebug(message);
         internal static void LogInfo(string message) => _logger.LogInfo(message);
         internal static void LogWarning(string message) => _logger.LogWarning(message);
-        internal static void LogError(string message) => _logger.LogError(message);
-
-        internal static ConfigEntry<bool> enableFishingReelFix;
-        internal static ConfigEntry<string> boatCameraMenuZoom;
+        internal static void LogError(string message) => _logger.LogError(message);        
 
         private void Awake()
         {
@@ -34,22 +31,8 @@ namespace RadFixes
             }
             Instance = this;
             _logger = Logger;
-
-            enableFishingReelFix = Config.Bind(
-                "Settings", "Enable reel fix",
-                true,
-                "If enabled will rotate the fishing rod reel in the direction it should.");
-            boatCameraMenuZoom = Config.Bind(
-                "Settings",
-                "Boat camera settings menu zoom fix",
-                "DisableZoom",
-                new ConfigDescription(
-                    "While paused in boat camera mode: DisableZoom will disable zooming in and out, DisableMenu will disable the menu, None will leave it as it is.",
-                    new AcceptableValueList<string>(
-                        "DisableZoom",
-                        "DisableMenu",
-                        "None")));
-
+            
+            Configs.InitializeConfigs();
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PLUGIN_GUID);
             SceneManager.sceneLoaded += SceneFixes.SceneLoaded;
         }        

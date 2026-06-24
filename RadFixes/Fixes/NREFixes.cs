@@ -1,23 +1,11 @@
 ﻿using HarmonyLib;
 using UnityEngine;
+using static RadFixes.RF_Plugin;
 
 namespace RadFixes
 {
     internal class NREFixes
     {
-        [HarmonyPatch(typeof(MouseLook), "ToggleMouseLookAndCursor")]
-        private class MouseLookPatches
-        {
-            // startup NRE fix
-            public static bool Prefix()
-            {
-                if (MouseButtonPointer.instance == null)
-                    return false;
-
-                return true;
-            }
-        }
-
         [HarmonyPatch(typeof(Refs), "SetPlayerControl")]
         private class RefsPatches
         {
@@ -34,25 +22,7 @@ namespace RadFixes
         [HarmonyPatch(typeof(NPCBoatController))]
         private class NPCBoatControllerPatches
         {
-            // startup NRE fix
-            [HarmonyPatch("Start")]
-            public static bool Prefix(NPCBoatController __instance, ref Collider ___col, ref Rigidbody ___rigidbody)
-            {
-                int waypointIndex;
-                if (__instance.currentTarget?.GetComponent<NPCBoatWaypoint>() == null)
-                    waypointIndex = -1;
-                else
-                    waypointIndex = __instance.currentTarget.GetComponent<NPCBoatWaypoint>().index;
-
-                ___col = __instance.GetComponent<Collider>();
-                ___rigidbody = __instance.GetComponent<Rigidbody>();
-                __instance.currentTargetIndex = waypointIndex;
-                __instance.currentDockIndex = -1;
-
-                return false;
-            }
-
-            // OnTriggerEnter NRE fix
+            // OnTriggerEnter NRE fix. Happens when out at sea
             [HarmonyPatch("OnTriggerEnter")]
             public static bool Prefix(Collider other, NPCBoatController __instance)
             {
@@ -82,55 +52,20 @@ namespace RadFixes
             }
         }
 
-        [HarmonyPatch(typeof(Sail), "Start")]
-        private class SailPatches
-        {
-            // startup NRE fix
-            public static bool Prefix(Sail __instance, ref Rigidbody ___sailRigidbody, Rigidbody ___shipRigidbody, ref BoatDamage ___damage, ref float ___minAngle, ref float ___maxAngle, SailCategory ___category)
-            {
-                ___sailRigidbody = __instance.GetComponent<Rigidbody>();
-                if (!___sailRigidbody)
-                {
-                    Debug.LogError($"{__instance.gameObject.name}: no sailRigidbody.");
-                }
-
-                ___damage = ___shipRigidbody?.gameObject.GetComponent<BoatDamage>();
-
-                var hingeJoint = __instance.GetComponent<HingeJoint>();
-                if (___minAngle == 0f && hingeJoint != null)
-                {
-                    ___minAngle = hingeJoint.limits.min;
-                }
-
-                if (___maxAngle == 0f && hingeJoint != null)
-                {
-                    ___maxAngle = hingeJoint.limits.max;
-                }
-
-                if (___category == SailCategory.staysail)
-                {
-                    ___sailRigidbody.mass = 0.1f;
-                    ___sailRigidbody.angularDrag = 1f;
-                }
-
-                __instance.SetSailArea();
-                return false;
-            }
-        }
-
         [HarmonyPatch(typeof(PortDude), "OnTriggerEnter")]
         private class PortDudePatches
         {
-            // OnTriggerEnter NRE fix or index out of bounds fix
+            // OnTriggerEnter NRE fix or index out of bounds fix.
+            // Occurs when a good that is not a mission good triggers PortDude's collider.
             public static bool Prefix(Collider other)
             {
-                if (other.CompareTag("Player") || !other.CompareTag("Good")) 
+                if (other.CompareTag("Player") || !other.CompareTag("Good"))
                     return false;
 
                 var good = other.GetComponent<Good>();
                 if (good == null || good.GetMissionIndex() == -1)
                     return false;
-                
+
                 return true;
             }
         }

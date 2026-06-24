@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.3.0] - 2026-06-24
+
+### Fixed
+- Hangable item falling through terrain after removing it from a lantern hook, disembarking, and dropping the item.
+- Hangable items in shops connecting to close by lantern hooks.
+
+### Removed
+- Fixes for the continue save slot menu as the bugs were fixed in the 0.38 update.
+- Several startup NRE fixes as they were fixed in a previous update.
+
+### Updated
+- The RefreshGoodsList patch to more accurately represent the original function.
+- Guid, removed the 82.
+
 ## [v1.2.1] - 2026-06-04
 
 ### Updated

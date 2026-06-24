@@ -14,11 +14,6 @@ namespace RadFixes
             Traverse.Create(obj).Field(field).SetValue(value);
         }
 
-        public static void SetPrivateField<T>(string field, object value)
-        {
-            Traverse.Create(typeof(T)).Field(field).SetValue(value);
-        }
-
         public static object InvokePrivateMethod(this object obj, string method, params object[] parameters)
         {
             return AccessTools.Method(obj.GetType(), method).Invoke(obj, parameters);

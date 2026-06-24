@@ -18,12 +18,12 @@ namespace RadFixes
             {
                 int num = Mathf.CeilToInt((float)__instance.goodCount / ___goodsListButtons.Length);
 
-                var currentPage = ___currentGoodsListPage;                
+                var currentPage = ___currentGoodsListPage;
                 if (currentPage < 0)
                     currentPage = 0;
                 if (currentPage > num - 1)
                     currentPage = num - 1;
-                
+
                 ___textPageNumber.text = $"{currentPage + 1} / {num}";
             }
 
@@ -68,6 +68,10 @@ namespace RadFixes
                     {
                         ___goodsListButtons[i].SetButtonMaterial(___buttonMaterials[2]);
                     }
+                    else if (___currentIsland.currentPlayerGoods[goodIndex] > 0)
+                    {
+                        ___goodsListButtons[i].SetButtonMaterial(___buttonMaterials[3]);
+                    }
                     else if (___currentIsland.HasGood(goodIndex))
                     {
                         ___goodsListButtons[i].SetButtonMaterial(___buttonMaterials[0]);
@@ -84,7 +88,7 @@ namespace RadFixes
             }
         }
 
-        [HarmonyBefore("com.raddude82.radrefinements")]
+        [HarmonyBefore("com.raddude.radrefinements")]
         [HarmonyPatch(typeof(GPButtonInventorySlot), "OnItemClick")]
         private class GPButtonInventorySlotPatches
         {

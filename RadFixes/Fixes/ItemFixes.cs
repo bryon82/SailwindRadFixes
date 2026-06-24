@@ -1,7 +1,7 @@
 ﻿using Crest;
 using HarmonyLib;
 using UnityEngine;
-using static RadFixes.RF_Plugin;
+using static RadFixes.Configs;
 
 namespace RadFixes
 {

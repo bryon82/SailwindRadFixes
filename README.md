@@ -2,21 +2,18 @@
 
 Fixes for various bugs in the game.
 
-## NPC Fixes
+## Bugs Fixed
 
 * Shop keepers and other NPCs in Gold Rock City, Sage Hills, Happy Bay, Eastwind, and Chronos not following the sunset schedule.
 * Not being able to buy anything in the Sage Hills inn at night.
-
-## General Fixes
-
+* Hangable item falling through terrain after removing it from a lantern hook, disembarking, and dropping the item.
+* Hangable items in shops connecting to close by lantern hooks.
 * Sell window remaining up after placing item in inventory.
 * NullReferenceExceptions slowing down startup.
 * UI sounds playing when you are in another application.
 * Sound continuing while in settings menu.
 * Zooming away or through the settings menu while paused in boat camera mode and zooming in or out.
 * Being able to switch to the boat camera from the settings menu.
-* Backup saves for save slot one not popping up when hovering over it until you hover over another save slot.
-* Not being able to continue a game when only having one save slot in use and it is not the first slot.
 * UI text showing while looking through spyglass.
 * ChipLog not working correctly when bought.
 * First page of trade menu not showing the page numbers correctly.

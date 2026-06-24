@@ -79,11 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fixes\BoatDamageFixes.cs" />
+    <Compile Include="Fixes\HangableFixes.cs" />
+    <Compile Include="Utilities\Configs.cs" />
     <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="Fixes\SettingsMenuFixes.cs" />
     <Compile Include="Fixes\ItemFixes.cs" />
     <Compile Include="Fixes\NREFixes.cs" />
-    <Compile Include="Fixes\ContinueMenuFixes.cs" />
     <Compile Include="Fixes\UIFixes.cs" />
     <Compile Include="RF_Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
