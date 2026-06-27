@@ -94,5 +94,30 @@ namespace RadFixes
                 return false;
             }
         }
+
+        // fix for items not floating
+        [HarmonyPatch(typeof(ItemRigidbody), "ToggleCollider")]
+        private class ItemRigidbodyPatches
+        {
+            public static bool Prefix(bool state, SimpleFloatingObject ___floater, BoxCollider ___boxCol, MeshCollider ___meshCol, CapsuleCollider ___capsuleCol)
+            {
+                if (!enableSinkingItemsFix.Value)
+                    return true;
+
+                if (___floater)
+                    ___floater.enabled = state;
+
+                if (___boxCol)
+                    ___boxCol.enabled = state;
+
+                if (___meshCol)
+                    ___meshCol.enabled = state;
+
+                if (___capsuleCol)
+                    ___capsuleCol.enabled = state;
+
+                return false;
+            }
+        }
     }
 }

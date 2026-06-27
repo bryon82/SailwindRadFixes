@@ -6,6 +6,7 @@ Fixes for various bugs in the game.
 
 * Shop keepers and other NPCs in Gold Rock City, Sage Hills, Happy Bay, Eastwind, and Chronos not following the sunset schedule.
 * Not being able to buy anything in the Sage Hills inn at night.
+* Items not floating.
 * Hangable item falling through terrain after removing it from a lantern hook, disembarking, and dropping the item.
 * Hangable items in shops connecting to close by lantern hooks.
 * Sell window remaining up after placing item in inventory.

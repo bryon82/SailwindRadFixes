@@ -6,6 +6,7 @@ namespace RadFixes
     {
         internal static ConfigEntry<bool> enableFishingReelFix;
         internal static ConfigEntry<string> boatCameraMenuZoom;
+        internal static ConfigEntry<bool> enableSinkingItemsFix;
 
         internal static void InitializeConfigs()
         {
@@ -16,6 +17,11 @@ namespace RadFixes
                 "Fishing rod reel fix",
                 true,
                 "If enabled will rotate the fishing rod reel in the direction it should.");
+
+            enableSinkingItemsFix = config.Bind(
+                "Settings",
+                "Sinking items fix",
+                true);
 
             boatCameraMenuZoom = config.Bind(
                 "Settings",

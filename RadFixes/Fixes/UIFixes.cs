@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
+using static RadFixes.RF_Plugin;
 
 namespace RadFixes
 {
@@ -88,7 +89,7 @@ namespace RadFixes
             }
         }
 
-        [HarmonyBefore("com.raddude.radrefinements")]
+        [HarmonyBefore(RADREFINEMENTS_GUID)]
         [HarmonyPatch(typeof(GPButtonInventorySlot), "OnItemClick")]
         private class GPButtonInventorySlotPatches
         {
