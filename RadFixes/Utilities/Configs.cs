@@ -7,6 +7,7 @@ namespace RadFixes
         internal static ConfigEntry<bool> enableFishingReelFix;
         internal static ConfigEntry<string> boatCameraMenuZoom;
         internal static ConfigEntry<bool> enableSinkingItemsFix;
+        internal static ConfigEntry<bool> enableModGUIFix;
 
         internal static void InitializeConfigs()
         {
@@ -33,6 +34,12 @@ namespace RadFixes
                         "DisableZoom",
                         "DisableMenu",
                         "None")));
+
+            enableModGUIFix = config.Bind(
+                "Settings",
+                "Mod GUI fix",
+                true,
+                "If enabled will fix the mod GUI not being visible when the player is in a menu.");
         }
     }
 }

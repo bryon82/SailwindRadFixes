@@ -74,10 +74,10 @@ namespace RadFixes
 
         #endregion
 
+        // chiplog was not being properly initialized when bought
         [HarmonyPatch(typeof(ShipItemChipLog), "OnBuy")]
         private class ShipItemChipLogPatches
         {
-            // chiplog was not being properly initialized when bought
             public static bool Prefix(
                 ShipItemChipLog __instance,
                 ref Rigidbody ___bobberBody,

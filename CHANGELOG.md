@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.3.2] - 2026-06-30
+
+### Fixed
+- CargoController mod changing mod gui.
+
 ## [v1.3.1] - 2026-06-27
 
 ### Fixed

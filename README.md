@@ -20,6 +20,7 @@ Fixes for various bugs in the game.
 * First page of trade menu not showing the page numbers correctly.
 * Last page of trade menu showing the same last item as the previous page.
 * Fishing rod reel rotating the opposite way.
+* CargoController mod affecting the gui.
 
 ## Configurable
 

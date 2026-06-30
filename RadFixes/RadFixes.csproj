@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Fixes\BoatDamageFixes.cs" />
     <Compile Include="Fixes\HangableFixes.cs" />
+    <Compile Include="Fixes\OtherModFixes.cs" />
     <Compile Include="Utilities\Configs.cs" />
     <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="Fixes\SettingsMenuFixes.cs" />
