@@ -37,9 +37,8 @@ namespace RadFixes
 
             enableModGUIFix = config.Bind(
                 "Settings",
-                "Mod GUI fix",
-                true,
-                "If enabled will fix the mod GUI not being visible when the player is in a menu.");
+                "Stop CargoController from affecting other GUIs",
+                true);
         }
     }
 }

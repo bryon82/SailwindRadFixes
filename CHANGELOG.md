@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.3.3] - 2026-07-01
+
+### Changed
+- How the CargoController fix works, CargoController will now maintain it's original look while not affecting others.
+
 ## [v1.3.2] - 2026-06-30
 
 ### Fixed

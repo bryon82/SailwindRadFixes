@@ -15,6 +15,7 @@ Fixes for various bugs in the game.
 * Sound continuing while in settings menu.
 * Zooming away or through the settings menu while paused in boat camera mode and zooming in or out.
 * Being able to switch to the boat camera from the settings menu.
+* Backup saves for save slot one not popping up when hovering over it until you hover over another save slot.
 * UI text showing while looking through spyglass.
 * ChipLog not working correctly when bought.
 * First page of trade menu not showing the page numbers correctly.

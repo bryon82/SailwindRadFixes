@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 
 namespace RadFixes
 {
@@ -17,6 +18,16 @@ namespace RadFixes
         public static object InvokePrivateMethod(this object obj, string method, params object[] parameters)
         {
             return AccessTools.Method(obj.GetType(), method).Invoke(obj, parameters);
+        }
+
+        public static T GetStaticProperty<T>(this object obj, string property)
+        {
+            return (T)Traverse.Create(obj.GetType()).Property(property).GetValue();
+        }
+
+        public static T GetStaticProperty<T>(this Type type, string property)
+        {
+            return (T)Traverse.Create(type).Property(property).GetValue();
         }
     }
 }

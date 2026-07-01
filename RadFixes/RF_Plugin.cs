@@ -2,7 +2,6 @@
 using BepInEx.Bootstrap;
 using BepInEx.Logging;
 using HarmonyLib;
-using RadFixes.Fixes;
 using System.Reflection;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +13,7 @@ namespace RadFixes
     {
         public const string PLUGIN_GUID = "com.raddude.radfixes";
         public const string PLUGIN_NAME = "RadFixes";
-        public const string PLUGIN_VERSION = "1.3.2";
+        public const string PLUGIN_VERSION = "1.3.3";
 
         public const string RADREFINEMENTS_GUID = "com.raddude.radrefinements";
         public const string CARGOCONTROLLER_GUID = "com.jakeinaboat.cargocontroller";

@@ -65,6 +65,10 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.InputModule.dll</HintPath>
@@ -79,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fixes\BoatDamageFixes.cs" />
+    <Compile Include="Fixes\ContinueMenuFixes.cs" />
     <Compile Include="Fixes\HangableFixes.cs" />
     <Compile Include="Fixes\OtherModFixes.cs" />
     <Compile Include="Utilities\Configs.cs" />
